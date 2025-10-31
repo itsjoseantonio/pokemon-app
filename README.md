@@ -102,3 +102,36 @@ The login form captures:
 
 - Only authenticated users can access specific routes such us `/home`.
 - No authorized users are redirected to the `/login` page.
+
+## Main View
+
+    Main View feature implementation follow the next rules:
+
+    - Display a dynamic list of Pokémon.
+    - Search, filtering, and sorting functionalities.
+    - Reusable, maintainable React components.
+    - Keep separation between UI, logic, and data fetching.
+
+### 1. **Data Fetching**
+
+- Pokémon data is fetched from `/pokemons` endpoint.
+- Data is stored in a global state for reusability.
+- The fetching logic is encapsulated in a custom hook `usePokemonData`.
+
+### 2. **Filtering**
+
+Users can filter Pokémon by:
+
+- **Name** or **Id**
+- The filtering logic is encapsulated in a custom hook `useFilterPokemon`
+
+### 3. **Sorting**
+
+Users can sort Pokémon by:
+
+- **Name** or **ID**
+- The sort state is also managed within the hook `useFilterPokemon`.
+
+### 4. **Rendering**
+
+- Pokémon are displayed in individual **cards** containing the image, name, and type.
