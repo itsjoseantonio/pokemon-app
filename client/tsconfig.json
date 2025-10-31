@@ -6,6 +6,7 @@
   ],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "baseUrl": ".",
