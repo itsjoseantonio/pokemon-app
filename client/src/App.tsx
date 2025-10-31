@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router';
 import './App.css';
 import LoginPage from '@/pages/Login';
 import HomePage from '@/pages/Home';
-import { useAuth } from './store/auth';
+import { useAuthStore } from './store/authStore';
 
 function App() {
-  const { user } = useAuth();
+  const { user } = useAuthStore();
 
   return (
     <>

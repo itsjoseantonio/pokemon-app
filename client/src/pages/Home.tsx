@@ -1,48 +1,19 @@
 import { useState } from 'react';
-import { useAuth } from '@/store/auth';
+import { useAuthStore } from '@/store/authStore';
+import usePokemonData from '@/hooks/usePokemonData';
+import useFilterPokemon from '@/hooks/useFilterPokemon';
 import { Button } from '@/components/ui/button';
 import pokeball from '@/assets/pokeball.svg';
 import PokemonCard from '@/components/PokemonCard';
 import SearchBar from '@/components/SearchBar';
 import SortCard from '@/components/SortCard';
+import { radioOptions } from '@/constants';
 
 const HomePage = () => {
-  const { user } = useAuth();
-  const [search, setSearch] = useState<string>('');
+  const { pokemonList } = usePokemonData();
+  const { search, setSearch, sortBy, setSortBy, filteredPokemon } =
+    useFilterPokemon({ pokemonList });
   const [showSort, setShowSort] = useState<boolean>(false);
-  const [sortBy, setSortBy] = useState<string>('number');
-
-  const radioOptions = [
-    {
-      id: 'number',
-      value: 'number',
-      label: 'Number',
-    },
-    {
-      id: 'name',
-      value: 'name',
-      label: 'Name',
-    },
-  ];
-
-  const pokemons = [
-    { id: '#001', name: 'Bulbasaur', image: '/assets/bulbasaur.png' },
-    { id: '#004', name: 'Charmander', image: '/assets/charmander.png' },
-    { id: '#007', name: 'Squirtle', image: '/assets/squirtle.png' },
-    { id: '#012', name: 'Butterfree', image: '/assets/butterfree.png' },
-    { id: '#025', name: 'Pikachu', image: '/assets/pikachu.png' },
-    { id: '#092', name: 'Gastly', image: '/assets/gastly.png' },
-    { id: '#132', name: 'Ditto', image: '/assets/ditto.png' },
-    { id: '#152', name: 'Mew', image: '/assets/mew.png' },
-    { id: '#304', name: 'Aron', image: '/assets/aron.png' },
-  ];
-
-  const filtered = pokemons.filter((p) => {
-    if (sortBy === 'name') {
-      return p.name.toLowerCase().includes(search.toLowerCase());
-    }
-    return p.id.toLowerCase().includes(search.toLowerCase());
-  });
 
   return (
     <main className='flex flex-col min-h-screen items-center bg-primary w-full'>
@@ -71,7 +42,7 @@ const HomePage = () => {
         </div>
       </section>
       <section className='w-[99%] grid grid-cols-3 gap-4 px-4 py-6 bg-white rounded-md'>
-        {filtered.map((p) => (
+        {filteredPokemon?.map((p) => (
           <PokemonCard key={p.id} id={p.id} name={p.name} image={p.image} />
         ))}
       </section>

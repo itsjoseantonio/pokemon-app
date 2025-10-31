@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { login } from '@/services/authService';
-import { useAuth } from '@/store/auth';
+import { useAuthStore } from '@/store/authStore';
 
 const useLogin = () => {
   const navigate = useNavigate();
-  const setSession = useAuth((state) => state.setSession);
+  const setSession = useAuthStore((state) => state.setSession);
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (username: string, password: string) => {

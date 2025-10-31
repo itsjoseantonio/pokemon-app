@@ -9,7 +9,7 @@ interface RadioItems {
 
 interface SortCardProps {
   radioValue: string;
-  setRadioValue: (value: string) => void;
+  setRadioValue: (value: 'number' | 'name') => void;
   options: RadioItems[] | null;
 }
 
