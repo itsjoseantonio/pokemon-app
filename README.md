@@ -37,3 +37,37 @@ so that I can organize them in the order I prefer.
 As a user,  
 I want to click on a Pokémon from the list,  
 so that I can view its detailed information, including abilities, moves, and forms.
+
+## Thought Process
+
+Here’s a brief overview of the decisions I made during the technical exercise and why I chose each tool.
+
+### Tools & Decisions
+
+- **Vite**  
+  Chosen for its fast development environment, instant HMR, and optimized production builds.
+
+- **Node.js 22 (LTS)**  
+  Using the latest LTS version to ensure stability and long-term support.
+
+- **Zustand**  
+  Selected for simple, minimal global state management with very little boilerplate — a great fit for small-to-medium apps.
+
+- **shadcn/ui**  
+  Provides accessible, customizable, and well-designed components which speeds up UI development while keeping consistency.
+
+- **Tailwind CSS**  
+  Utility styling for fast layout and responsive design, keeping CSS maintainable and consistent.
+
+- **Axios**  
+  Used for API requests because of its simplicity, error handling and json parsing.
+
+### Project Structure
+
+    /assets     → Static files (images, icons, etc.)
+    /components → Reusable UI components
+    /hooks      → Custom React hooks for encapsulating logic
+    /pages      → Main pages or views of the application
+    /services   → API and external service logic (Axios)
+    /store      → Zustand store files for global state management
+    /types      → TypeScript types and interfaces
