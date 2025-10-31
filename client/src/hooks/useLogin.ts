@@ -13,12 +13,10 @@ const useLogin = () => {
 
     try {
       const data = await login(username, password);
-      console.log(data, 'data');
       setSession(data.user);
       navigate('/home');
     } catch (error) {
       setError('Invalid credentials');
-      console.log(error, 'error');
     }
   };
 
