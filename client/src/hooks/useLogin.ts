@@ -14,7 +14,7 @@ const useLogin = () => {
     try {
       const data = await login(username, password);
       setSession(data.user);
-      navigate('/home');
+      navigate('/pokemons');
     } catch (error) {
       setError('Invalid credentials');
     }

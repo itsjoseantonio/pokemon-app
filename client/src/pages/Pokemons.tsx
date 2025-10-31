@@ -1,10 +1,12 @@
+import { Link } from 'react-router';
 import usePokemonData from '@/hooks/usePokemonData';
 import useFilterPokemon from '@/hooks/useFilterPokemon';
-import pokeball from '@/assets/pokeball.svg';
+
 import PokemonCard from '@/components/PokemonCard';
 import FilterControls from '@/components/FilterControls';
+import pokeball from '@/assets/pokeball.svg';
 
-const HomePage = () => {
+const PokemonsPage = () => {
   const { pokemonList } = usePokemonData();
   const { search, setSearch, sortBy, setSortBy, filteredPokemon } =
     useFilterPokemon({ pokemonList });
@@ -30,8 +32,9 @@ const HomePage = () => {
           <PokemonCard key={p.id} id={p.id} name={p.name} image={p.image} />
         ))}
       </section>
+      <Link to='/pokemons/100'>details</Link>
     </main>
   );
 };
 
-export default HomePage;
+export default PokemonsPage;
