@@ -53,7 +53,7 @@ Here’s a brief overview of the decisions I made during the technical exercise 
 - **Zustand**  
   Selected for simple, minimal global state management with very little boilerplate — a great fit for small-to-medium apps.
 
-- **shadcn/ui**  
+- **Shadcn/ui**  
   Provides accessible, customizable, and well-designed components which speeds up UI development while keeping consistency.
 
 - **Tailwind CSS**  
@@ -71,3 +71,34 @@ Here’s a brief overview of the decisions I made during the technical exercise 
     /services   → API and external service logic (Axios)
     /store      → Zustand store files for global state management
     /types      → TypeScript types and interfaces
+
+## Login
+
+    Login feature implementation follow the next rules:
+
+    	- User authentication with credentials
+    	- Persist the session after login.
+    	- Redirect authenticated users to the main Pokémon view.
+    	- Prevent unauthorized access to protected routes.
+
+**1. Form Values**
+The login form captures:
+
+- **Username**
+- **Password**
+
+**2. Authentication**
+
+- The app sends a **POST** request to the `/login` endpoint with validated credentials.
+- If authentication succeeds the server returns the session.
+- The session is stored in `localStorage` to persist.
+
+**3. Session Persistence**
+
+- When page is reloaded, the app checks for an existing sesion in `localStorage`.
+- If found, it redirects the user to the main page.
+
+**4. Protected Routes**
+
+- Only authenticated users can access specific routes such us `/home`.
+- No authorized users are redirected to the `/login` page.
