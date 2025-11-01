@@ -4,15 +4,35 @@ class PokemonService {
   async getPokemons(offset = 0, limit = 20) {
     const response = await pokeApiClient.getPokemons(offset, limit);
 
+    const pokemonDetailsPromises = response.results.map(async (pokemon) => {
+      const id = this.extractIdFromUrl(pokemon.url);
+      try {
+        const details = await pokeApiClient.getPokemonById(id);
+        return {
+          id: `#00${id}`,
+          name: pokemon.name,
+          url: pokemon.url,
+          image: details.sprites.front_default,
+          types: details.types.map((type) => type.type.name),
+        };
+      } catch (error) {
+        return {
+          id,
+          name: pokemon.name,
+          url: pokemon.url,
+          image: null,
+          types: [],
+        };
+      }
+    });
+
+    const pokemonWithImages = await Promise.all(pokemonDetailsPromises);
+
     return {
       count: response.count,
       next: response.next,
       previous: response.previous,
-      results: response.results.map((pokemon) => ({
-        name: pokemon.name,
-        url: pokemon.url,
-        id: this.extractIdFromUrl(pokemon.url),
-      })),
+      results: pokemonWithImages,
     };
   }
 
