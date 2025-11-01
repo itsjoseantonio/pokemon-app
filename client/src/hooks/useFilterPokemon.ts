@@ -16,7 +16,7 @@ const useFilterPokemon = ({ pokemonList }: UseFilterPokemonProps) => {
       if (sortBy === 'name') {
         return p.name.toLowerCase().includes(search.toLowerCase());
       }
-      return p.id.toLowerCase().includes(search.toLowerCase());
+      return String(p.id).toLowerCase().includes(search.toLowerCase());
     });
 
     return filtered;

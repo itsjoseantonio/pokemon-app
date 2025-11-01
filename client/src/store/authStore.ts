@@ -6,8 +6,9 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       user: null,
+      token: null,
       setSession: (user, token) => {
-        set({ user });
+        set({ user, token });
       },
     }),
     {

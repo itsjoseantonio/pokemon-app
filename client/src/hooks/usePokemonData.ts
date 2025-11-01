@@ -17,9 +17,11 @@ const pokemons = [
 const usePokemonData = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[] | null>(null);
 
-  const getPokemonData = () => {
+  const getPokemonData = async () => {
     try {
-      setPokemonList(pokemons);
+      const { data } = await fetchPokemons();
+      console.log(data, 'pokemons');
+      setPokemonList(data.results);
     } catch (error) {
       console.log(error, 'error');
     }

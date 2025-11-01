@@ -1,9 +1,4 @@
-import axios from 'axios';
-
-const api = axios.create({
-  baseURL: 'https://pokeapi.co/api/v2/',
-  headers: { 'Content-Type': 'application/json' },
-});
+import { api } from './api';
 
 export const fetchPokemons = async () => {
   const response = await api.get('/pokemons');
