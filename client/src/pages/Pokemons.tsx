@@ -32,7 +32,7 @@ const PokemonsPage = () => {
           <PokemonCard key={p.id} id={p.id} name={p.name} image={p.image} />
         ))}
       </section>
-      <Link to='/pokemons/100'>details</Link>
+      <Link to='/pokemons/1'>details</Link>
     </main>
   );
 };

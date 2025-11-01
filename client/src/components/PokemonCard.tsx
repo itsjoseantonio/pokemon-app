@@ -1,7 +1,7 @@
 import { Card, CardContent } from './ui/card';
 
 interface PokemonCardProps {
-  id: string;
+  id: string | number;
   name: string;
   image: string;
 }
