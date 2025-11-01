@@ -4,8 +4,9 @@ export interface User {
 }
 
 export interface AuthState {
+  token?: string | null;
   user: User | null;
-  setSession: (user: User) => void;
+  setSession: (user: User, token: string) => void;
 }
 
 export interface PokemonStat {
