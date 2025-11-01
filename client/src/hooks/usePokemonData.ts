@@ -2,28 +2,23 @@ import { useState, useEffect } from 'react';
 import { fetchPokemons } from '@/services/pokemonService';
 import type { Pokemon } from '@/types';
 
-const pokemons = [
-  { id: '#001', name: 'Bulbasaur', image: '/assets/bulbasaur.png' },
-  { id: '#004', name: 'Charmander', image: '/assets/charmander.png' },
-  { id: '#007', name: 'Squirtle', image: '/assets/squirtle.png' },
-  { id: '#012', name: 'Butterfree', image: '/assets/butterfree.png' },
-  { id: '#025', name: 'Pikachu', image: '/assets/pikachu.png' },
-  { id: '#092', name: 'Gastly', image: '/assets/gastly.png' },
-  { id: '#132', name: 'Ditto', image: '/assets/ditto.png' },
-  { id: '#152', name: 'Mew', image: '/assets/mew.png' },
-  { id: '#304', name: 'Aron', image: '/assets/aron.png' },
-];
-
 const usePokemonData = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const getPokemonData = async () => {
+    setError(null);
+
     try {
-      const { data } = await fetchPokemons();
-      console.log(data, 'pokemons');
-      setPokemonList(data.results);
-    } catch (error) {
-      console.log(error, 'error');
+      setLoading(true);
+      const { data: PokemonsData } = await fetchPokemons();
+      setPokemonList(PokemonsData.results);
+    } catch (err) {
+      console.error(err);
+      setError('Failed to load Pokémon data.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -31,7 +26,7 @@ const usePokemonData = () => {
     getPokemonData();
   }, []);
 
-  return { pokemonList };
+  return { pokemonList, error, loading };
 };
 
 export default usePokemonData;

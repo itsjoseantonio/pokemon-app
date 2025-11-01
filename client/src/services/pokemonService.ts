@@ -6,6 +6,6 @@ export const fetchPokemons = async () => {
 };
 
 export const getPokemonById = async (id: string) => {
-  const response = await api.get(`/pokemon/${id}`);
+  const response = await api.get(`/pokemons/${id}`);
   return response.data;
 };

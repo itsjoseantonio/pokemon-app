@@ -1,4 +1,4 @@
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import usePokemonById from '@/hooks/usePokemonById';
@@ -84,25 +84,22 @@ const AboutSection = ({ data }) => (
 const PokemonDetailPage = () => {
   const { id } = useParams();
   const { pokemonData } = usePokemonById(id!);
-  const { name, number, types, description, baseStats } = bulbasaurData;
-
-  const headerBgColor = 'bg-green-500';
-  const headerTextColor = 'text-white';
+  const { types, description, baseStats } = bulbasaurData;
 
   return (
-    <div className={`min-h-screen mx-auto w-full ${headerBgColor}`}>
-      <div className={`p-4 ${headerTextColor}`}>
+    <div className={`min-h-screen mx-auto w-full bg-green-500`}>
+      <div className={`p-4 text-white`}>
         <header className='flex items-center justify-between mb-4'>
           <div className='flex items-center gap-2'>
-            <span className='cursor-pointer'>a</span>
-            <h1 className='text-2xl font-bold'>{name}</h1>
+            <Link to={-1}>Back</Link>
+            <h1 className='text-2xl font-bold'>{pokemonData?.name}</h1>
           </div>
-          <span className='text-md font-bold'>{number}</span>
+          <span className='text-md font-bold'>{`#00${pokemonData?.id}`}</span>
         </header>
 
         <div className='relative flex justify-center py-4'>
           <div className='z-10 -mb-16 w-[150px] h-[150px] flex items-center justify-center'>
-            <span className='text-6xl text-gray-800'>🌱</span>
+            <img src='' alt='' />
           </div>
           <span className='absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 opacity-70 cursor-pointer'>
             ≤

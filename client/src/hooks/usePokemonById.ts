@@ -3,14 +3,20 @@ import { getPokemonById } from '@/services/pokemonService';
 
 const usePokemonById = (id: string) => {
   const [pokemonData, setPokemonData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchPokemon = async () => {
+    setError(null);
     try {
-      const response = await getPokemonById(id);
-      console.log(response, 'response pokemon');
+      setLoading(true);
+      const { data: PokemonData } = await getPokemonById(id);
+      setPokemonData(PokemonData);
     } catch (error) {
-      console.log(error, 'error');
+      console.error(error);
+      setError('Failed to load Pokémon data.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -18,7 +24,7 @@ const usePokemonById = (id: string) => {
     fetchPokemon();
   }, []);
 
-  return { pokemonData };
+  return { pokemonData, loading, error };
 };
 
 export default usePokemonById;

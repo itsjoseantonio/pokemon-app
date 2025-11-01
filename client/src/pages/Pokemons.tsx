@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import usePokemonData from '@/hooks/usePokemonData';
 import useFilterPokemon from '@/hooks/useFilterPokemon';
 
@@ -8,6 +7,7 @@ import pokeball from '@/assets/pokeball.svg';
 
 const PokemonsPage = () => {
   const { pokemonList } = usePokemonData();
+  console.log(pokemonList, 'list');
   const { search, setSearch, sortBy, setSortBy, filteredPokemon } =
     useFilterPokemon({ pokemonList });
 
@@ -29,10 +29,14 @@ const PokemonsPage = () => {
       </section>
       <section className='w-[99%] grid grid-cols-3 gap-4 px-4 py-6 bg-white rounded-md'>
         {filteredPokemon?.map((p) => (
-          <PokemonCard key={p.id} id={p.id} name={p.name} image={p.image} />
+          <PokemonCard
+            key={p.id}
+            id={String(p.id)}
+            name={p.name}
+            image={p.image}
+          />
         ))}
       </section>
-      <Link to='/pokemons/1'>details</Link>
     </main>
   );
 };
