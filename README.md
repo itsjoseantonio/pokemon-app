@@ -135,3 +135,59 @@ Users can sort Pokémon by:
 ### 4. **Rendering**
 
 - Pokémon are displayed in individual **cards** containing the image, name, and type.
+
+## Detail page
+
+Detail View page implementation follow the next rules:
+
+    - Fetch and display detailed information for indivual Pokemon.
+    - Provide component and reponsive UI.
+    - Keep separation between UI, logic, and data fetching.
+
+### 1. **Data Fetching**
+
+- Dynamic route handling via **React Router** (`/pokemons/:id`).
+- Uses a **custom hook** `usePokemonById` to fetch Pokémon data
+- Error and Loading handlers
+
+### 4. **Rendering**
+
+- Display Components for details Pokemon
+
+# Backend
+
+A lightweight backend that serves Pokémon data using [PokéAPI](https://pokeapi.co/).
+
+## Features
+
+- Simple login
+- Pokémon list with pagination
+- Pokémon details by ID
+- Fetches data directly from PokéAPI
+
+## Tech Stack
+
+- Node.js + Express
+- Axios for HTTP requests
+
+## Thought Process
+
+1. Started by defining minimal required endpoints.
+2. Used PokéAPI as the source of truth to fetch data.
+3. Added error handling for invalid Pokémon IDs.
+4. Kept authentication simple (no DB needed).
+5. Wrote clean modular code to separate routes and services.
+
+## Prompts Used
+
+1. **Prompt:**
+   I'm building a fullstack Pokemon app and I want you to implement a lightweight backend that will rely on **https://pokeapi.co/** as a source to obtain Pokémon information. Use nodejs/express and consider the following endpoints:
+
+- Login: this is to handle credentials authorization (admin/admin)
+- /pokemons: it should provide all the pokemons paginated as in the pokeapi
+- /pokemons/{id}: it should provide the detailed information of a pokémon.
+  Apply a clean and scalable project structure to ensure maintainability
+
+## Modification
+
+- Add to the pokemons endpoint the image value, keep the others values
